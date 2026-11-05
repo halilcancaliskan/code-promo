@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Exemple de boutique externe</title>
+  <style>
+    body { margin: 0; padding: 48px 24px; font: 16px/1.7 Arial, sans-serif; background: #f6f5ef; color: #252c27; }
+    main { max-width: 740px; margin: auto; }
+    button { padding: 14px 20px; border: 0; border-radius: 8px; background: #a3421c; color: white; cursor: pointer; font: inherit; }
+    .space { height: 1000px; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Votre boutique, votre univers.</h1>
+    <p>Cette page HTML est hébergée séparément de Next.js. Le jeu s'ouvre une fois par session après 1,2 seconde.</p>
+    <button id="open">Ouvrir le jeu</button>
+    <p id="status" role="status"></p>
+    <div class="space"><p>Le défilement et le focus seront restaurés après la fermeture.</p></div>
+  </main>
+  <script
+    src="http://127.0.0.1:3000/embed.js"
+    data-shop="demo"
+    data-name="Ma boutique"
+    data-accent="#a3421c"
+    data-background="#fff9f0"
+    data-code="PANIER10"
+    data-terms="-10 % dès 50 € d'achat, hors promotions. Code d'exemple à activer dans votre boutique."
+    data-expires-at="2026-12-31T22:59:59Z"
+    defer>
+  </script>
+  <script>
+    window.addEventListener("basketball-promo:error", function (event) {
+      document.getElementById("status").textContent = event.detail.message;
+    });
+    document.getElementById("open").addEventListener("click", async function () {
+      try {
+        if (!window.BasketballPromo) throw new Error("Le script n'est pas encore chargé.");
+        await window.BasketballPromo.open();
+      } catch (error) {
+        console.error(error);
+        document.getElementById("status").textContent = "Le jeu n'est pas disponible. Vérifiez la console.";
+      }
+    });
+  </script>
+</body>
+</html>
