@@ -31,7 +31,7 @@ const shops: Record<string, ShopConfig> = {
     id: "demo",
     campaignId: "welcome-v1",
     name: "Court Club",
-    allowedOrigins: origins(process.env.DEMO_SHOP_ORIGINS ?? "http://localhost:3000,http://127.0.0.1:3000,http://127.0.0.1:3001"),
+    allowedOrigins: origins(process.env.DEMO_SHOP_ORIGINS ?? "http://localhost:3000,http://127.0.0.1:3000,http://127.0.0.1:3001,https://kebab-center.fr,https://www.kebab-center.fr"),
     accent: "#a3421c",
     background: "#fff9f0",
     title: "3 paniers. À vous la réduction.",
